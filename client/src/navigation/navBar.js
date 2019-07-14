@@ -8,8 +8,12 @@ const navBar = () => {
 			<Link to="/" className={cls.linkStyle}>
 				Home
 			</Link>
-			<Link to="/about/">About</Link>
-			<Link to="/users/">Users</Link>
+			<Link to="/about/" className={cls.linkStyle}>
+				About
+			</Link>
+			<Link to="/users/" className={cls.linkStyle}>
+				Users
+			</Link>
 		</nav>
 	);
 };
