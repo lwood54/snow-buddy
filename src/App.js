@@ -1,11 +1,13 @@
 import React from "react";
-import Router from "./router";
+import NavBar from "./navigation/navBar";
+import AppRouter from "./router";
 
 function App() {
 	return (
-		<div className="App">
+		<div>
+			<NavBar />
 			<h1>Snow Buddy</h1>
-			<Router />
+			<AppRouter />
 		</div>
 	);
 }
