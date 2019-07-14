@@ -16,10 +16,12 @@ app.use(express.json());
 
 // import routes
 const authRoute = require("./routes/auth");
+const postRoute = require("./routes/posts");
 
 // Route middlware
 // everything in the 'authRoute' will have the prefix of '/api/user'
 app.use("/api/user", authRoute);
+app.use("/api/posts", postRoute);
 
 const port = 5000;
 app.listen(port, () => {
