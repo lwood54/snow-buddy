@@ -6,6 +6,7 @@ const UserRegistration = () => {
 	const [userEmail, setUserEmail] = useState("");
 	const [userPassword, setUserPassword] = useState("");
 	const [registrationMessage, setRegistrationMessage] = useState("");
+	const [showRegistrationMessage, setShowRegistrationMessage] = useState(false);
 
 	const registerUrl = "http://localhost:5000/api/user/register";
 
@@ -49,15 +50,22 @@ const UserRegistration = () => {
 			.then(response => response.json())
 			.then(res => {
 				console.log(res);
+				setRegistrationMessage("You have successfully registered...");
+				setShowRegistrationMessage(true);
 			})
 			.catch(error => {
 				console.log("Error: ", error);
+				setRegistrationMessage("Unable to register right now.");
+				setShowRegistrationMessage(true);
 			});
 
 		setUserName("");
 		setUserSkill("");
 		setUserEmail("");
 		setUserPassword("");
+		setTimeout(() => {
+			setShowRegistrationMessage(false);
+		}, 3000);
 	};
 
 	return (
@@ -74,6 +82,7 @@ const UserRegistration = () => {
 				<input type="password" onChange={handleChange} name="password" placeholder="kewlpassword" value={userPassword} />
 				<input type="submit" value="Register" />
 			</form>
+			{showRegistrationMessage ? <h3>{registrationMessage}</h3> : null}
 		</div>
 	);
 };
