@@ -21,12 +21,17 @@ router.post("/register", async (req, res) => {
 	// Create new user if route info validated
 	const user = new User({
 		name: req.body.name,
+		skill: req.body.skill,
 		email: req.body.email,
 		password: hashedPassword
 	});
 	try {
 		const savedUser = await user.save();
-		res.send({ user: savedUser._id });
+		res.send(savedUser);
+		// res.send({
+		//     user: savedUser._id,
+
+		// });
 	} catch (error) {
 		res.status(400).send(err);
 	}

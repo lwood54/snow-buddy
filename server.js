@@ -18,12 +18,20 @@ app.use(express.json());
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 
+// enable CORS
+// https://enable-cors.org/server_expressjs.html
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
+
 // Route middlware
 // everything in the 'authRoute' will have the prefix of '/api/user'
 app.use("/api/user", authRoute);
 app.use("/api/posts", postRoute);
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
 	console.log(`Server running on ${port}!`);
 });

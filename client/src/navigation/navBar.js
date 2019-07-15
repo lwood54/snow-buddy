@@ -11,7 +11,7 @@ const navBar = () => {
 			<Link to="/about/" className={cls.linkStyle}>
 				About
 			</Link>
-			<Link to="/users/" className={cls.linkStyle}>
+			<Link to="/userRegistration/" className={cls.linkStyle}>
 				Users
 			</Link>
 		</nav>
