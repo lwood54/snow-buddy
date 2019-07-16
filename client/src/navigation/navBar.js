@@ -6,7 +6,9 @@ const navBar = () => {
 	return (
 		<nav className={cls.navContainer}>
 			<Link to="/" className={cls.linkStyle}>
-				Home
+				<div className={cls.container}>
+					<div className={cls.inner}>Home</div>
+				</div>
 			</Link>
 			<Link to="/about/" className={cls.linkStyle}>
 				About
