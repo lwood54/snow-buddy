@@ -13,30 +13,48 @@
 	color: $txt-color;
 	font-size: $nav-font-size;
 	text-decoration: none;
-	padding: 5px;
+	// padding: 5px;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-content: center;
 	line-height: 50px;
 	border-radius: 5px;
+	box-sizing: border-box;
+}
 
-	&:hover {
-		color: $txt-hover;
-	}
+.linkContainer {
+	position: relative;
+	padding: 5px;
+	width: 100px;
 }
 
 .container {
-	width: 100%;
-	background: white;
-	border-radius: 5px;
 	.inner {
 		background-color: rgb(47, 81, 194);
-		padding: 5px 20px;
+		width: 100%;
 		border-radius: 5px;
+		position: absolute;
+		top: 0;
+		left: 0;
 		color: white;
-		clip-path: circle(10% at 0 0);
+		clip-path: circle(10% at -10% -10%);
 		transition: all 0.5s ease-in-out;
+		box-sizing: border-box;
+		display: flex;
+		justify-content: center;
+		align-content: center;
+	}
+	.inner2 {
+		position: absolute;
+		top: 0;
+		left: 0;
+		border-radius: 5px;
+		width: 100%;
+		box-sizing: border-box;
+		display: flex;
+		justify-content: center;
+		align-content: center;
 	}
 	&:hover .inner {
 		clip-path: circle(100px at 50% 50%);

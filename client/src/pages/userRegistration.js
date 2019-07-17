@@ -70,7 +70,7 @@ const UserRegistration = () => {
 
 	return (
 		<div>
-			<h1>User Login</h1>
+			<h1>User Registration</h1>
 			<form onSubmit={handleRegister}>
 				<label>Name</label>
 				<input type="text" onChange={handleChange} name="name" placeholder="Logan Wood" value={userName} />
