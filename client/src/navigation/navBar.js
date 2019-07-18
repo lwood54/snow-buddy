@@ -17,7 +17,10 @@ const navBar = () => {
 				About
 			</Link>
 			<Link to="/userRegistration/" className={cls.linkStyle}>
-				Users
+				Registration
+			</Link>
+			<Link to="/userLogin/" className={cls.linkStyle}>
+				Login
 			</Link>
 		</nav>
 	);
