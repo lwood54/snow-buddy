@@ -26,7 +26,7 @@ const UserLogin = () => {
 			password: userPassword
 		};
 		console.log("userData: ", JSON.stringify(userData));
-		fetch("http://localhost:5000/api/user/login", {
+		fetch(loginUrl, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
