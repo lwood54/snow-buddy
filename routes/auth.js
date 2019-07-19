@@ -45,6 +45,9 @@ router.post("/login", async (req, res) => {
 
 	// Check if user is already in DB
 	const user = await User.findOne({ email: req.body.email });
+	console.log("req.body.email: ", req.body.email);
+	console.log("req.body.password: ", req.body.password);
+	console.log("user: ", user);
 	if (!user) return res.status(400).send("User not found...email or password may be wrong.");
 
 	// Check for correct PASSWORD
@@ -53,6 +56,7 @@ router.post("/login", async (req, res) => {
 
 	// Create and assign JSON Web Token
 	const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+	console.log("token: ", token);
 	res.header("auth-token", token).send(token);
 });
 
