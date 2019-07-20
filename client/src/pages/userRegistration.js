@@ -40,6 +40,8 @@ const UserRegistration = () => {
 			email: userEmail,
 			password: userPassword
 		};
+		console.log("running?");
+
 		fetch(registerUrl, {
 			method: "POST",
 			headers: {
