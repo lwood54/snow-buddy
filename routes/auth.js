@@ -31,7 +31,7 @@ router.post("/register", async (req, res) => {
 		// const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
 		// console.log("token: ", token);
 		// res.header("auth-token", token).send({ token, user });
-		res.send(user);
+		res.send(savedUser);
 		// res.send({
 		// 	user: savedUser._id
 		// });
@@ -42,6 +42,11 @@ router.post("/register", async (req, res) => {
 
 // route: /api/user/login
 router.post("/login", async (req, res) => {
+	let returnBody = {
+		token: "",
+		error: "",
+		user: ""
+	};
 	// Validate data before creating user
 	const { error } = loginValidation(req.body);
 	if (error) return res.status(400).send(`Error Details: ${error.details[0].message}`);
@@ -55,12 +60,12 @@ router.post("/login", async (req, res) => {
 
 	// Check for correct PASSWORD
 	const validPassword = await bcrypt.compare(req.body.password, user.password);
-	if (!validPassword) return res.status(400).send("Password is invalid...");
+	if (!validPassword) return res.status(400).send({ error: "Password is invalid..." });
 
 	// Create and assign JSON Web Token
 	const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
 	console.log("token: ", token);
-	res.header("auth-token", token).send(token);
+	res.header("auth-token", token).send({ token });
 });
 
 module.exports = router;

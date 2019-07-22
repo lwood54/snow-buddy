@@ -33,19 +33,22 @@ const UserLogin = () => {
 			},
 			body: JSON.stringify(userData)
 		})
-			.then(response => {
-				console.log("response: ", response);
-			})
+			.then(response => response.json())
 			.then(res => {
-				console.log(res);
-				setLoginMessage("You have successfully logged in...");
+				console.log("res: ", res);
+				setLoginMessage(res.token ? "Logged in!" : res.error);
 				setShowLoginMessage(true);
 			})
 			.catch(error => {
-				console.log("Error: ", error);
-				setLoginMessage("Unable to login right now.");
+				setLoginMessage("Issue: ", error);
 				setShowLoginMessage(true);
 			});
+		setUserEmail("");
+		setUserPassword("");
+		setTimeout(() => {
+			setLoginMessage("");
+			setShowLoginMessage(false);
+		}, 3000);
 	};
 	return (
 		<div>

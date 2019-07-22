@@ -40,7 +40,6 @@ const UserRegistration = () => {
 			email: userEmail,
 			password: userPassword
 		};
-		console.log("running?");
 
 		fetch(registerUrl, {
 			method: "POST",
@@ -51,7 +50,6 @@ const UserRegistration = () => {
 		})
 			.then(response => response.json())
 			.then(res => {
-				console.log(res);
 				setRegistrationMessage("You have successfully registered...");
 				setShowRegistrationMessage(true);
 			})
@@ -66,6 +64,7 @@ const UserRegistration = () => {
 		setUserEmail("");
 		setUserPassword("");
 		setTimeout(() => {
+			setRegistrationMessage("");
 			setShowRegistrationMessage(false);
 		}, 3000);
 	};
