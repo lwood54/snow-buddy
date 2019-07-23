@@ -5,6 +5,8 @@ const UserLogin = () => {
 	const [userPassword, setUserPassword] = useState("");
 	const [loginMessage, setLoginMessage] = useState("");
 	const [showLoginMessage, setShowLoginMessage] = useState("");
+	const [loggedIn, setLoggedIn] = useState(false);
+
 	const loginUrl = "http://localhost:5000/api/user/login";
 	const handleChange = e => {
 		switch (e.target.name) {
@@ -18,6 +20,16 @@ const UserLogin = () => {
 				break;
 		}
 	};
+
+	useEffect(() => {
+		if (loggedIn) {
+			setLoginMessage("Logged in!");
+			setShowLoginMessage(true);
+		} else {
+			setLoginMessage("Not logged in...");
+			setShowLoginMessage(true);
+		}
+	}, [loggedIn]);
 
 	const handleLogin = e => {
 		e.preventDefault();
@@ -36,7 +48,7 @@ const UserLogin = () => {
 			.then(response => response.json())
 			.then(res => {
 				console.log("res: ", res);
-				setLoginMessage(res.token ? "Logged in!" : res.error);
+				setLoggedIn(res.token);
 				setShowLoginMessage(true);
 			})
 			.catch(error => {
