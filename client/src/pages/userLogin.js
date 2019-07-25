@@ -25,9 +25,11 @@ const UserLogin = () => {
 		if (loggedIn) {
 			setLoginMessage("Logged in!");
 			setShowLoginMessage(true);
+			console.log("localStorage token: ", localStorage.getItem("auth-token"));
 		} else {
 			setLoginMessage("Not logged in...");
 			setShowLoginMessage(true);
+			localStorage.removeItem("auth-token");
 		}
 	}, [loggedIn]);
 
@@ -49,6 +51,7 @@ const UserLogin = () => {
 			.then(res => {
 				console.log("res: ", res);
 				setLoggedIn(res.token);
+				localStorage.setItem("auth-token", res.token);
 				setShowLoginMessage(true);
 			})
 			.catch(error => {
@@ -62,6 +65,13 @@ const UserLogin = () => {
 			setShowLoginMessage(false);
 		}, 3000);
 	};
+
+	const [counter, setCounter] = useState(0);
+	const handleAdd = () => {
+		if (localStorage.getItem("auth-token")) {
+			setCounter(counter + 1);
+		}
+	};
 	return (
 		<div>
 			<h1>Login</h1>
@@ -73,6 +83,8 @@ const UserLogin = () => {
 				<input type="submit" value="Login" />
 				{showLoginMessage ? <h3>{loginMessage}</h3> : null}
 			</form>
+			<button onClick={handleAdd}>Add 1</button>
+			<h3>{counter}</h3>
 		</div>
 	);
 };
