@@ -5,7 +5,8 @@ const UserLogin = () => {
 	const [userPassword, setUserPassword] = useState("");
 	const [loginMessage, setLoginMessage] = useState("");
 	const [showLoginMessage, setShowLoginMessage] = useState("");
-	const [loggedIn, setLoggedIn] = useState(false);
+	const [loggedIn, setLoggedIn] = useState(localStorage.getItem("auth-token"));
+	const [loggedOut, setLoggedOut] = useState(!localStorage.getItem("auth-token"));
 
 	const loginUrl = "http://localhost:5000/api/user/login";
 	const handleChange = e => {
@@ -26,14 +27,11 @@ const UserLogin = () => {
 			setLoginMessage("Logged in!");
 			setShowLoginMessage(true);
 			console.log("localStorage token: ", localStorage.getItem("auth-token"));
-		} else {
-			setLoginMessage("Not logged in...");
-			setShowLoginMessage(true);
-			localStorage.removeItem("auth-token");
 		}
 	}, [loggedIn]);
 
 	const handleLogin = e => {
+		console.log("loggin in...");
 		e.preventDefault();
 		const userData = {
 			email: userEmail,
@@ -51,6 +49,7 @@ const UserLogin = () => {
 			.then(res => {
 				console.log("res: ", res);
 				setLoggedIn(res.token);
+				setLoggedOut(!res.token);
 				localStorage.setItem("auth-token", res.token);
 				setShowLoginMessage(true);
 			})
@@ -66,6 +65,17 @@ const UserLogin = () => {
 		}, 3000);
 	};
 
+	const handleLogout = e => {
+		e.preventDefault();
+		localStorage.removeItem("auth-token");
+		setLoginMessage("Logging out...");
+		setShowLoginMessage(true);
+		setTimeout(() => {
+			setLoginMessage("");
+			setShowLoginMessage(false);
+		}, 2000);
+	};
+
 	const [counter, setCounter] = useState(0);
 	const handleAdd = () => {
 		if (localStorage.getItem("auth-token")) {
@@ -75,12 +85,12 @@ const UserLogin = () => {
 	return (
 		<div>
 			<h1>Login</h1>
-			<form onSubmit={handleLogin}>
+			<form>
 				<label>Email</label>
 				<input type="email" onChange={handleChange} name="email" placeholder="energy@mcsquared.com" value={userEmail} />
 				<label>Password</label>
 				<input type="password" onChange={handleChange} name="password" placeholder="kewlpassword" value={userPassword} />
-				<input type="submit" value="Login" />
+				{loggedOut ? <button onClick={handleLogin}>Log In</button> : <button onClick={handleLogout}>Log Out</button>}
 				{showLoginMessage ? <h3>{loginMessage}</h3> : null}
 			</form>
 			<button onClick={handleAdd}>Add 1</button>
