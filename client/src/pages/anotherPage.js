@@ -9,13 +9,6 @@ const AnotherPage = () => {
 	const [showUserMessage, setShowUserMessage] = useState(false);
 	const [userIsUpdated, setIsUserUpdated] = useState("");
 
-	const handleNewSkillInput = e => {
-		e.preventDefault();
-		if (e.target.value >= 0 && e.target.value <= 10) {
-			setNewSkillLevel(e.target.value);
-		}
-	};
-
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setUserMessage("");
@@ -24,6 +17,13 @@ const AnotherPage = () => {
 		}, 3000);
 		return () => clearTimeout(timer);
 	}, [userIsUpdated]);
+
+	const handleNewSkillInput = e => {
+		e.preventDefault();
+		if (e.target.value >= 0 && e.target.value <= 10) {
+			setNewSkillLevel(e.target.value);
+		}
+	};
 
 	const submitUpdate = e => {
 		e.preventDefault();

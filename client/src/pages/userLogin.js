@@ -9,7 +9,21 @@ const UserLogin = () => {
 	const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInStatus);
 	const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
 
-	const loginUrl = "http://localhost:5000/api/user/login";
+	useEffect(() => {
+		if (isLoggedIn) {
+			setLoginMessage("Logged in!");
+			setShowLoginMessage(true);
+		}
+	}, [isLoggedIn]);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setLoginMessage("");
+			setShowLoginMessage(false);
+		}, 3000);
+		return () => clearTimeout(timer);
+	}, [isLoggedIn]);
+
 	const handleChange = e => {
 		switch (e.target.name) {
 			case "email":
@@ -23,14 +37,9 @@ const UserLogin = () => {
 		}
 	};
 
-	useEffect(() => {
-		if (isLoggedIn) {
-			setLoginMessage("Logged in!");
-			setShowLoginMessage(true);
-		}
-	}, [isLoggedIn]);
-
 	const handleLogin = e => {
+		const loginUrl = "http://localhost:5000/api/user/login";
+
 		e.preventDefault();
 		const userData = {
 			email: userEmail,
@@ -61,14 +70,6 @@ const UserLogin = () => {
 		setUserEmail("");
 		setUserPassword("");
 	};
-
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setLoginMessage("");
-			setShowLoginMessage(false);
-		}, 3000);
-		return () => clearTimeout(timer);
-	}, [isLoggedIn]);
 
 	const handleLogout = e => {
 		e.preventDefault();
