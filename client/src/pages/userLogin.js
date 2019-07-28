@@ -1,14 +1,12 @@
-import React, { useState, useEffect, createContext } from "react";
-
-export const LoggedInStatus = createContext("hello");
+import React, { useState, useEffect, useContext } from "react";
+import { LoggedInStatus } from "../App";
 
 const UserLogin = () => {
 	const [userEmail, setUserEmail] = useState("");
 	const [userPassword, setUserPassword] = useState("");
 	const [loginMessage, setLoginMessage] = useState("");
 	const [showLoginMessage, setShowLoginMessage] = useState("");
-	const [loggedIn, setLoggedIn] = useState(localStorage.getItem("auth-token") ? true : false);
-	const [loggedOut, setLoggedOut] = useState(!localStorage.getItem("auth-token") ? true : false);
+	const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInStatus);
 
 	const loginUrl = "http://localhost:5000/api/user/login";
 	const handleChange = e => {
@@ -25,12 +23,12 @@ const UserLogin = () => {
 	};
 
 	useEffect(() => {
-		console.log("loggedIn status: ", loggedIn);
-		if (loggedIn) {
+		console.log("loggedIn status @userLogin: ", isLoggedIn);
+		if (isLoggedIn) {
 			setLoginMessage("Logged in!");
 			setShowLoginMessage(true);
 		}
-	}, [loggedIn]);
+	}, [isLoggedIn]);
 
 	const handleLogin = e => {
 		console.log("loggin in...");
@@ -48,8 +46,7 @@ const UserLogin = () => {
 		})
 			.then(response => response.json())
 			.then(res => {
-				setLoggedIn(res.token ? true : false);
-				setLoggedOut(!res.token ? true : false);
+				setIsLoggedIn(res.token ? true : false);
 				// localStorage.setItem("auth-token", res.token);
 				setShowLoginMessage(true);
 			})
@@ -67,7 +64,7 @@ const UserLogin = () => {
 
 	const handleLogout = e => {
 		e.preventDefault();
-		// localStorage.removeItem("auth-token");
+		setIsLoggedIn(false);
 		setLoginMessage("Logging out...");
 		setShowLoginMessage(true);
 		setTimeout(() => {
@@ -78,24 +75,24 @@ const UserLogin = () => {
 
 	const [counter, setCounter] = useState(0);
 	const handleAdd = () => {
-		if (loggedIn) {
+		if (isLoggedIn) {
 			setCounter(counter + 1);
 		}
 	};
 	return (
-		<LoggedInStatus.Provider value={loggedIn}>
+		<div>
 			<h1>Login</h1>
 			<form>
 				<label>Email</label>
 				<input type="email" onChange={handleChange} name="email" placeholder="energy@mcsquared.com" value={userEmail} />
 				<label>Password</label>
 				<input type="password" onChange={handleChange} name="password" placeholder="kewlpassword" value={userPassword} />
-				{loggedOut ? <button onClick={handleLogin}>Log In</button> : <button onClick={handleLogout}>Log Out</button>}
+				{!isLoggedIn ? <button onClick={handleLogin}>Log In</button> : <button onClick={handleLogout}>Log Out</button>}
 				{showLoginMessage ? <h3>{loginMessage}</h3> : null}
 			</form>
 			<button onClick={handleAdd}>Add 1</button>
 			<h3>{counter}</h3>
-		</LoggedInStatus.Provider>
+		</div>
 	);
 };
 

@@ -1,18 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState, createContext } from "react";
 import NavBar from "./navigation/navBar";
 import AppRouter from "./appRouter";
-import { LoggedInStatus } from "./pages/userLogin";
+
+export const LoggedInStatus = createContext("hello");
 
 function App() {
-	const [loggedIn, setLoggedIn] = useState(false);
-	let isLoggedIn = useContext(LoggedInStatus);
-	console.log("isLoggedIn: ", isLoggedIn);
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	console.log("isLoggedIn @ App.js: ", isLoggedIn);
 	return (
-		<div>
+		<LoggedInStatus.Provider value={[isLoggedIn, setIsLoggedIn]}>
 			<NavBar />
 			<h1>Snow Buddy</h1>
 			<AppRouter />
-		</div>
+		</LoggedInStatus.Provider>
 	);
 }
 
