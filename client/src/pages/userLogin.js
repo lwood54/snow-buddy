@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { LoggedInStatus } from "../App";
+import { LoggedInStatus, CurrentUserContext } from "../App";
 
 const UserLogin = () => {
 	const [userEmail, setUserEmail] = useState("");
@@ -7,6 +7,7 @@ const UserLogin = () => {
 	const [loginMessage, setLoginMessage] = useState("");
 	const [showLoginMessage, setShowLoginMessage] = useState("");
 	const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInStatus);
+	const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
 
 	const loginUrl = "http://localhost:5000/api/user/login";
 	const handleChange = e => {
@@ -23,7 +24,6 @@ const UserLogin = () => {
 	};
 
 	useEffect(() => {
-		console.log("loggedIn status @userLogin: ", isLoggedIn);
 		if (isLoggedIn) {
 			setLoginMessage("Logged in!");
 			setShowLoginMessage(true);
@@ -31,7 +31,6 @@ const UserLogin = () => {
 	}, [isLoggedIn]);
 
 	const handleLogin = e => {
-		console.log("loggin in...");
 		e.preventDefault();
 		const userData = {
 			email: userEmail,
@@ -47,7 +46,12 @@ const UserLogin = () => {
 			.then(response => response.json())
 			.then(res => {
 				setIsLoggedIn(res.token ? true : false);
-				// localStorage.setItem("auth-token", res.token);
+				if (res.token) {
+					setCurrentUser({
+						...res.user,
+						token: res.token
+					});
+				}
 				setShowLoginMessage(true);
 			})
 			.catch(error => {
@@ -56,21 +60,21 @@ const UserLogin = () => {
 			});
 		setUserEmail("");
 		setUserPassword("");
-		setTimeout(() => {
+	};
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
 			setLoginMessage("");
 			setShowLoginMessage(false);
 		}, 3000);
-	};
+		return () => clearTimeout(timer);
+	}, [isLoggedIn]);
 
 	const handleLogout = e => {
 		e.preventDefault();
 		setIsLoggedIn(false);
 		setLoginMessage("Logging out...");
 		setShowLoginMessage(true);
-		setTimeout(() => {
-			setLoginMessage("");
-			setShowLoginMessage(false);
-		}, 2000);
 	};
 
 	const [counter, setCounter] = useState(0);
