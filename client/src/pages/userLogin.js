@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
+
+export const LoggedInStatus = createContext("hello");
 
 const UserLogin = () => {
 	const [userEmail, setUserEmail] = useState("");
 	const [userPassword, setUserPassword] = useState("");
 	const [loginMessage, setLoginMessage] = useState("");
 	const [showLoginMessage, setShowLoginMessage] = useState("");
-	const [loggedIn, setLoggedIn] = useState(localStorage.getItem("auth-token"));
-	const [loggedOut, setLoggedOut] = useState(!localStorage.getItem("auth-token"));
+	const [loggedIn, setLoggedIn] = useState(localStorage.getItem("auth-token") ? true : false);
+	const [loggedOut, setLoggedOut] = useState(!localStorage.getItem("auth-token") ? true : false);
 
 	const loginUrl = "http://localhost:5000/api/user/login";
 	const handleChange = e => {
@@ -23,10 +25,10 @@ const UserLogin = () => {
 	};
 
 	useEffect(() => {
+		console.log("loggedIn status: ", loggedIn);
 		if (loggedIn) {
 			setLoginMessage("Logged in!");
 			setShowLoginMessage(true);
-			console.log("localStorage token: ", localStorage.getItem("auth-token"));
 		}
 	}, [loggedIn]);
 
@@ -37,7 +39,6 @@ const UserLogin = () => {
 			email: userEmail,
 			password: userPassword
 		};
-		console.log("userData: ", JSON.stringify(userData));
 		fetch(loginUrl, {
 			method: "POST",
 			headers: {
@@ -47,10 +48,9 @@ const UserLogin = () => {
 		})
 			.then(response => response.json())
 			.then(res => {
-				console.log("res: ", res);
-				setLoggedIn(res.token);
-				setLoggedOut(!res.token);
-				localStorage.setItem("auth-token", res.token);
+				setLoggedIn(res.token ? true : false);
+				setLoggedOut(!res.token ? true : false);
+				// localStorage.setItem("auth-token", res.token);
 				setShowLoginMessage(true);
 			})
 			.catch(error => {
@@ -67,7 +67,7 @@ const UserLogin = () => {
 
 	const handleLogout = e => {
 		e.preventDefault();
-		localStorage.removeItem("auth-token");
+		// localStorage.removeItem("auth-token");
 		setLoginMessage("Logging out...");
 		setShowLoginMessage(true);
 		setTimeout(() => {
@@ -78,12 +78,12 @@ const UserLogin = () => {
 
 	const [counter, setCounter] = useState(0);
 	const handleAdd = () => {
-		if (localStorage.getItem("auth-token")) {
+		if (loggedIn) {
 			setCounter(counter + 1);
 		}
 	};
 	return (
-		<div>
+		<LoggedInStatus.Provider value={loggedIn}>
 			<h1>Login</h1>
 			<form>
 				<label>Email</label>
@@ -95,7 +95,7 @@ const UserLogin = () => {
 			</form>
 			<button onClick={handleAdd}>Add 1</button>
 			<h3>{counter}</h3>
-		</div>
+		</LoggedInStatus.Provider>
 	);
 };
 

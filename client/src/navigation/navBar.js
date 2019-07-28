@@ -22,6 +22,9 @@ const navBar = () => {
 			<Link to="/userLogin/" className={cls.linkStyle}>
 				Login
 			</Link>
+			<Link to="/anotherPage/" className={cls.linkStyle}>
+				Another Page
+			</Link>
 		</nav>
 	);
 };
