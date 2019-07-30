@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { LoggedInStatus, CurrentUserContext } from "../App";
 
-const AnotherPage = () => {
-	const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInStatus);
+const UserProfile = () => {
+	const [isLoggedIn] = useContext(LoggedInStatus);
 	const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
 	const [newSkillLevel, setNewSkillLevel] = useState("");
 	const [userMessage, setUserMessage] = useState("");
@@ -88,4 +88,4 @@ const AnotherPage = () => {
 	);
 };
 
-export default AnotherPage;
+export default UserProfile;

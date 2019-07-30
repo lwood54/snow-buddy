@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import cls from "./nav.module.scss";
+import { LoggedInStatus } from "../App";
 
-const navBar = () => {
+const NavBar = () => {
+	const [isLoggedIn] = useContext(LoggedInStatus);
+
 	return (
 		<nav className={cls.navContainer}>
 			<div className={cls.linkContainer}>
@@ -16,17 +19,19 @@ const navBar = () => {
 			<Link to="/about/" className={cls.linkStyle}>
 				About
 			</Link>
-			<Link to="/userRegistration/" className={cls.linkStyle}>
-				Registration
-			</Link>
+			{!isLoggedIn ? (
+				<Link to="/userRegistration/" className={cls.linkStyle}>
+					Register
+				</Link>
+			) : null}
 			<Link to="/userLogin/" className={cls.linkStyle}>
-				Login
+				{!isLoggedIn ? "Login" : "Logout"}
 			</Link>
-			<Link to="/anotherPage/" className={cls.linkStyle}>
-				Another Page
+			<Link to="/userProfile/" className={cls.linkStyle}>
+				User Profile
 			</Link>
 		</nav>
 	);
 };
 
-export default navBar;
+export default NavBar;

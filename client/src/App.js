@@ -2,8 +2,8 @@ import React, { useState, createContext } from "react";
 import NavBar from "./navigation/navBar";
 import AppRouter from "./appRouter";
 
-export const LoggedInStatus = createContext("hello");
-export const CurrentUserContext = createContext("hello");
+export const LoggedInStatus = createContext(false);
+export const CurrentUserContext = createContext({});
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);

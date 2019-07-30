@@ -72,14 +72,9 @@ router.post("/update", async (req, res) => {
 	const user = await User.findOne({ email: req.body.email });
 	if (!user) return res.status(400).send("User not found...email or password may be wrong.");
 
-	// Check for correct PASSWORD
-	// const validPassword = await bcrypt.compare(req.body.password, user.password);
-	// if (!validPassword) return res.status(400).send({ error: "Password is invalid..." });
-
 	try {
 		const verified = jwt.verify(token, process.env.TOKEN_SECRET);
 		req.user = verified;
-		// next();
 	} catch (error) {
 		return res.status(400).send("Invalid authorization token...");
 	}

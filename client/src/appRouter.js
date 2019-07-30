@@ -4,7 +4,7 @@ import Home from "./pages/home";
 import About from "./pages/about";
 import UserRegistration from "./pages/userRegistration";
 import UserLogin from "./pages/userLogin";
-import AnotherPage from "./pages/anotherPage";
+import UserProfile from "./pages/userProfile";
 
 function AppRouter() {
 	return (
@@ -13,7 +13,7 @@ function AppRouter() {
 			<Route path="/about/" component={About} />
 			<Route path="/userRegistration/" component={UserRegistration} />
 			<Route path="/userLogin/" component={UserLogin} />
-			<Route path="/anotherPage/" component={AnotherPage} />
+			<Route path="/userProfile/" component={UserProfile} />
 		</Switch>
 	);
 }

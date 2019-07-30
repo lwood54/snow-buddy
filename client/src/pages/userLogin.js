@@ -7,7 +7,7 @@ const UserLogin = () => {
 	const [loginMessage, setLoginMessage] = useState("");
 	const [showLoginMessage, setShowLoginMessage] = useState("");
 	const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInStatus);
-	const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+	const [, setCurrentUser] = useContext(CurrentUserContext); // need ' , ' to define empty variable
 
 	useEffect(() => {
 		if (isLoggedIn) {
