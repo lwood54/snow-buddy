@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { LoggedInStatus, CurrentUserContext } from "../App";
+import UserInfo from "../components/UserInfo";
 
 const UserProfile = () => {
 	const [isLoggedIn] = useContext(LoggedInStatus);
@@ -62,30 +63,31 @@ const UserProfile = () => {
 				});
 		}
 	};
-	return (
-		<div>
-			{showUserMessage ? <h3>{userMessage}</h3> : null}
-			<br />
-			<h2>Current User Info: </h2>
-			<ul>
-				<li>Name: {isLoggedIn ? currentUser.name : ""}</li>
-				<li>email: {isLoggedIn ? currentUser.email : ""}</li>
-				<li>
-					Skill Level: {isLoggedIn ? currentUser.skill : ""}
-					{isLoggedIn ? (
-						<ul>
-							<li>
-								Update skill level: <input name="skill" type="number" onChange={handleNewSkillInput} value={newSkillLevel} />
-							</li>
-							<li>
-								<button onClick={submitUpdate}>update</button>
-							</li>
-						</ul>
-					) : null}
-				</li>
-			</ul>
-		</div>
-	);
+	return <UserInfo currentUser={currentUser} submitUpdate={submitUpdate} />;
+	// return (
+	// 	<div>
+	// 		{showUserMessage ? <h3>{userMessage}</h3> : null}
+	// 		<br />
+	// 		<h2>Current User Info: </h2>
+	// 		<ul>
+	// 			<li>Name: {isLoggedIn ? currentUser.name : ""}</li>
+	// 			<li>email: {isLoggedIn ? currentUser.email : ""}</li>
+	// 			<li>
+	// 				Skill Level: {isLoggedIn ? currentUser.skill : ""}
+	// 				{isLoggedIn ? (
+	// 					<ul>
+	// 						<li>
+	// 							Update skill level: <input name="skill" type="number" onChange={handleNewSkillInput} value={newSkillLevel} />
+	// 						</li>
+	// 						<li>
+	// 							<button onClick={submitUpdate}>update</button>
+	// 						</li>
+	// 					</ul>
+	// 				) : null}
+	// 			</li>
+	// 		</ul>
+	// 	</div>
+	// );
 };
 
 export default UserProfile;
