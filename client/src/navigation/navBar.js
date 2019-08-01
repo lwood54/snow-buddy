@@ -24,11 +24,8 @@ const NavBar = () => {
 					Register
 				</Link>
 			) : null}
-			<Link to="/userLogin/" className={cls.linkStyle}>
-				{!isLoggedIn ? "Login" : "Logout"}
-			</Link>
 			<Link to="/userProfile/" className={cls.linkStyle}>
-				User Profile
+				{isLoggedIn ? "User Profile" : "Login"}
 			</Link>
 		</nav>
 	);
