@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useContext } from "react";
 import { LoggedInStatus, CurrentUserContext } from "../App";
 
 const UserLogin = () => {
 	const [userEmail, setUserEmail] = useState("");
 	const [userPassword, setUserPassword] = useState("");
-	const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInStatus);
+	const [, setIsLoggedIn] = useContext(LoggedInStatus);
 	const [, setCurrentUser] = useContext(CurrentUserContext); // need ' , ' to define empty variable
 	const [errorMessage, setErrorMessage] = useState("");
 

@@ -6,13 +6,11 @@ const UserInfo = () => {
 	const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
 	const [newSkillLevel, setNewSkillLevel] = useState("");
 	const [userMessage, setUserMessage] = useState("");
-	const [showUserMessage, setShowUserMessage] = useState(false);
 	const [userIsUpdated, setIsUserUpdated] = useState("");
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setUserMessage("");
-			setShowUserMessage(false);
 			setIsUserUpdated(false);
 		}, 3000);
 		return () => clearTimeout(timer);
@@ -50,7 +48,6 @@ const UserInfo = () => {
 				.then(res => {
 					if (res.error) {
 						setUserMessage(res.error);
-						setShowUserMessage(true);
 						setIsUserUpdated(false);
 					} else {
 						setCurrentUser({
@@ -86,6 +83,7 @@ const UserInfo = () => {
 					</ul>
 				</div>
 			) : null}
+			{userMessage ? <p>{userMessage}</p> : null}
 		</div>
 	);
 };

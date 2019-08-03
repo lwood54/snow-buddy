@@ -19,13 +19,8 @@ const NavBar = () => {
 			<Link to="/about/" className={cls.linkStyle}>
 				About
 			</Link>
-			{!isLoggedIn ? (
-				<Link to="/userRegistration/" className={cls.linkStyle}>
-					Register
-				</Link>
-			) : null}
 			<Link to="/userProfile/" className={cls.linkStyle}>
-				{isLoggedIn ? "User Profile" : "Login"}
+				{isLoggedIn ? "User Profile" : "Login/Register"}
 			</Link>
 		</nav>
 	);
