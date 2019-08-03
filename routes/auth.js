@@ -39,11 +39,11 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
 	// Validate data before creating user
 	const { error } = loginValidation(req.body);
-	if (error) return res.status(400).send(`Error Details: ${error.details[0].message}`);
+	if (error) return res.status(400).send({ error: `${error.details[0].message}` });
 
 	// Check if user is already in DB
 	const user = await User.findOne({ email: req.body.email });
-	if (!user) return res.status(400).send("User not found...email or password may be wrong.");
+	if (!user) return res.status(400).send({ error: "User not found...email or password may be wrong." });
 
 	// Check for correct PASSWORD
 	const validPassword = await bcrypt.compare(req.body.password, user.password);
@@ -66,17 +66,17 @@ router.post("/login", async (req, res) => {
 /// route: /api/user/update
 router.post("/update", async (req, res) => {
 	const token = req.body.token;
-	if (!token) return res.status(401).send("Access Denied...");
+	if (!token) return res.status(401).send({ error: "Access Denied..." });
 
 	// Check if user is already in DB
 	const user = await User.findOne({ email: req.body.email });
-	if (!user) return res.status(400).send("User not found...email or password may be wrong.");
+	if (!user) return res.status(400).send({ error: "User not found...email or password may be wrong." });
 
 	try {
 		const verified = jwt.verify(token, process.env.TOKEN_SECRET);
 		req.user = verified;
 	} catch (error) {
-		return res.status(400).send("Invalid authorization token...");
+		return res.status(400).send({ error: "Invalid authorization token..." });
 	}
 	if (req.user) {
 		const updatedUser = await User.findOneAndUpdate(
@@ -89,7 +89,7 @@ router.post("/update", async (req, res) => {
 		);
 		res.send(updatedUser);
 	} else {
-		res.send("Authentication error, update denied.");
+		res.send({ error: "Authentication error, update denied." });
 	}
 });
 

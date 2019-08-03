@@ -4,26 +4,9 @@ import { LoggedInStatus, CurrentUserContext } from "../App";
 const UserLogin = () => {
 	const [userEmail, setUserEmail] = useState("");
 	const [userPassword, setUserPassword] = useState("");
-	const [loginMessage, setLoginMessage] = useState("");
-	const [showLoginMessage, setShowLoginMessage] = useState("");
 	const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInStatus);
 	const [, setCurrentUser] = useContext(CurrentUserContext); // need ' , ' to define empty variable
-	let isMounted = useRef();
-
-	useEffect(() => {
-		if (isLoggedIn) {
-			setLoginMessage("Logged in!");
-			setShowLoginMessage(true);
-		}
-	}, [isLoggedIn]);
-
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setLoginMessage("");
-			setShowLoginMessage(false);
-		}, 3000);
-		return () => clearTimeout(timer);
-	}, [isLoggedIn]);
+	const [errorMessage, setErrorMessage] = useState("");
 
 	const handleChange = e => {
 		switch (e.target.name) {
@@ -38,7 +21,6 @@ const UserLogin = () => {
 		}
 	};
 
-	// TODO: Needs work, cancel async call on unmounted component
 	const handleLogin = e => {
 		const loginUrl = "http://localhost:5000/api/user/login";
 
@@ -55,11 +37,7 @@ const UserLogin = () => {
 			body: JSON.stringify(userData)
 		})
 			.then(response => {
-				if (isMounted.current) {
-					return response.json();
-				} else {
-					return null;
-				}
+				return response.json();
 			})
 			.then(res => {
 				setIsLoggedIn(res.token ? true : false);
@@ -68,41 +46,28 @@ const UserLogin = () => {
 						...res.user,
 						token: res.token
 					});
+				} else if (res.error) {
+					setErrorMessage(res.error);
 				}
-				setShowLoginMessage(true);
 			})
 			.catch(error => {
-				setLoginMessage("Issue: ", error);
-				setShowLoginMessage(true);
+				console.log("error message: ", error);
 			});
 		setUserEmail("");
 		setUserPassword("");
 	};
 
-	const handleLogout = e => {
-		e.preventDefault();
-		setIsLoggedIn(false);
-		setLoginMessage("Logging out...");
-		setShowLoginMessage(true);
-	};
-
 	return (
 		<div>
-			{!isLoggedIn ? (
-				<div>
-					<h1>Login</h1>
-					<form ref={isMounted}>
-						<label>Email</label>
-						<input type="email" onChange={handleChange} name="email" placeholder="energy@mcsquared.com" value={userEmail} />
-						<label>Password</label>
-						<input type="password" onChange={handleChange} name="password" placeholder="kewlpassword" value={userPassword} />
-						<button onClick={handleLogin}>Log In</button>
-						{showLoginMessage ? <h3>{loginMessage}</h3> : null}
-					</form>
-				</div>
-			) : (
-				<button onClick={handleLogout}>Log Out</button>
-			)}
+			<h1>Login</h1>
+			<form>
+				<label>Email</label>
+				<input type="email" onChange={handleChange} name="email" placeholder="energy@mcsquared.com" value={userEmail} />
+				<label>Password</label>
+				<input type="password" onChange={handleChange} name="password" placeholder="kewlpassword" value={userPassword} />
+				{errorMessage ? <p>{errorMessage}</p> : null}
+				<button onClick={handleLogin}>Log In</button>
+			</form>
 		</div>
 	);
 };
