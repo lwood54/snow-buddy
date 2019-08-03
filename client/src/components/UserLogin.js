@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { LoggedInStatus, CurrentUserContext } from "../App";
 
 const UserLogin = () => {
@@ -8,6 +8,7 @@ const UserLogin = () => {
 	const [showLoginMessage, setShowLoginMessage] = useState("");
 	const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInStatus);
 	const [, setCurrentUser] = useContext(CurrentUserContext); // need ' , ' to define empty variable
+	let isMounted = useRef();
 
 	useEffect(() => {
 		if (isLoggedIn) {
@@ -53,8 +54,16 @@ const UserLogin = () => {
 			},
 			body: JSON.stringify(userData)
 		})
-			.then(response => response.json())
+			.then(response => {
+				console.log(isMounted.current);
+				if (isMounted.current) {
+					return response.json();
+				} else {
+					return null;
+				}
+			})
 			.then(res => {
+				console.log(isMounted.current);
 				setIsLoggedIn(res.token ? true : false);
 				if (res.token) {
 					setCurrentUser({
@@ -68,6 +77,7 @@ const UserLogin = () => {
 				setLoginMessage("Issue: ", error);
 				setShowLoginMessage(true);
 			});
+		console.log(isMounted.current);
 		setUserEmail("");
 		setUserPassword("");
 	};
@@ -88,7 +98,7 @@ const UserLogin = () => {
 	return (
 		<div>
 			<h1>Login</h1>
-			<form>
+			<form ref={isMounted}>
 				<label>Email</label>
 				<input type="email" onChange={handleChange} name="email" placeholder="energy@mcsquared.com" value={userEmail} />
 				<label>Password</label>
