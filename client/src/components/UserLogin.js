@@ -55,7 +55,6 @@ const UserLogin = () => {
 			body: JSON.stringify(userData)
 		})
 			.then(response => {
-				console.log(isMounted.current);
 				if (isMounted.current) {
 					return response.json();
 				} else {
@@ -63,7 +62,6 @@ const UserLogin = () => {
 				}
 			})
 			.then(res => {
-				console.log(isMounted.current);
 				setIsLoggedIn(res.token ? true : false);
 				if (res.token) {
 					setCurrentUser({
@@ -77,7 +75,6 @@ const UserLogin = () => {
 				setLoginMessage("Issue: ", error);
 				setShowLoginMessage(true);
 			});
-		console.log(isMounted.current);
 		setUserEmail("");
 		setUserPassword("");
 	};
@@ -89,25 +86,23 @@ const UserLogin = () => {
 		setShowLoginMessage(true);
 	};
 
-	const [counter, setCounter] = useState(0);
-	const handleAdd = () => {
-		if (isLoggedIn) {
-			setCounter(counter + 1);
-		}
-	};
 	return (
 		<div>
-			<h1>Login</h1>
-			<form ref={isMounted}>
-				<label>Email</label>
-				<input type="email" onChange={handleChange} name="email" placeholder="energy@mcsquared.com" value={userEmail} />
-				<label>Password</label>
-				<input type="password" onChange={handleChange} name="password" placeholder="kewlpassword" value={userPassword} />
-				{!isLoggedIn ? <button onClick={handleLogin}>Log In</button> : <button onClick={handleLogout}>Log Out</button>}
-				{showLoginMessage ? <h3>{loginMessage}</h3> : null}
-			</form>
-			<button onClick={handleAdd}>Add 1</button>
-			<h3>{counter}</h3>
+			{!isLoggedIn ? (
+				<div>
+					<h1>Login</h1>
+					<form ref={isMounted}>
+						<label>Email</label>
+						<input type="email" onChange={handleChange} name="email" placeholder="energy@mcsquared.com" value={userEmail} />
+						<label>Password</label>
+						<input type="password" onChange={handleChange} name="password" placeholder="kewlpassword" value={userPassword} />
+						<button onClick={handleLogin}>Log In</button>
+						{showLoginMessage ? <h3>{loginMessage}</h3> : null}
+					</form>
+				</div>
+			) : (
+				<button onClick={handleLogout}>Log Out</button>
+			)}
 		</div>
 	);
 };

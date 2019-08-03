@@ -19,7 +19,6 @@ const UserInfo = () => {
 	}, [userIsUpdated]);
 
 	useEffect(() => {
-		console.log("running when isLoggedIn clears...");
 		if (!isLoggedIn) {
 			setCurrentUser("");
 		}
@@ -71,18 +70,22 @@ const UserInfo = () => {
 	};
 	return (
 		<div>
-			<h1>name: {currentUser.name}</h1>
-			<h1>email: {currentUser.email}</h1>
-			<h1>skill: {currentUser.skill}</h1>
-			<ul>
-				<li>
-					Update skill level:
-					<input name="skill" type="number" onChange={handleNewSkillInput} value={newSkillLevel} />
-				</li>
-				<li>
-					<button onClick={submitUpdate}>update</button>
-				</li>
-			</ul>
+			{isLoggedIn ? (
+				<div>
+					<h1>name: {currentUser.name}</h1>
+					<h1>email: {currentUser.email}</h1>
+					<h1>skill: {currentUser.skill}</h1>
+					<ul>
+						<li>
+							Update skill level:
+							<input name="skill" type="number" onChange={handleNewSkillInput} value={newSkillLevel} />
+						</li>
+						<li>
+							<button onClick={submitUpdate}>update</button>
+						</li>
+					</ul>
+				</div>
+			) : null}
 		</div>
 	);
 };
