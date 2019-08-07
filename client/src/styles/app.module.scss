@@ -1,13 +1,19 @@
 .mainContainer {
 	background: linear-gradient(180deg, #f4b12f 0%, rgba(226, 59, 240, 0.63) 100%);
-	min-height: 75vh;
+	// min-height: 100%;
+	height: 100vh;
 }
 
 .slopeContainer {
 	position: absolute;
-	border: 2px solid red;
-	top: 75vh;
-	min-height: 25vh;
-	width: 100%;
-	background-color: #fff;
+	bottom: -20px;
+	// min-height: 500px;
+	max-height: 1200px;
+	width: 100vw;
+}
+@media (min-width: 1000px) {
+	.slopeContainer {
+		min-height: 500px;
+		fill: blue;
+	}
 }
