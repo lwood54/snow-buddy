@@ -15,6 +15,8 @@ function App() {
 	return (
 		<div className={cls.mainContainer}>
 			<img className={cls.slopeContainer} src={bgSlopeSVG} alt="background slope" />
+			<img className={cls.slope3Container} src={bgSlopeSVG3} alt="background slope" />
+
 			<LoggedInStatus.Provider value={[isLoggedIn, setIsLoggedIn]}>
 				<CurrentUserContext.Provider value={[currentUser, setCurrentUser]}>
 					<NavBar />

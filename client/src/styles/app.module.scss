@@ -7,13 +7,23 @@
 .slopeContainer {
 	position: absolute;
 	bottom: -20px;
-	// min-height: 500px;
 	max-height: 1200px;
 	width: 100vw;
 }
-@media (min-width: 1000px) {
+
+.slope3Container {
+	position: absolute;
+	display: none;
+	bottom: -20px;
+	max-height: 1200px;
+	width: 100vw;
+}
+
+@media (max-width: 800px) {
 	.slopeContainer {
-		min-height: 500px;
-		fill: blue;
+		display: none;
+	}
+	.slope3Container {
+		display: block;
 	}
 }
