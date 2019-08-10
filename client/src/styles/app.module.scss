@@ -1,26 +1,11 @@
-.mainContainer {
-	background: linear-gradient(180deg, #f4b12f 0%, rgba(226, 59, 240, 0.63) 100%);
-	height: 100vh;
-}
+@import "../styles/global_variables.scss";
 
-// .slope3Container {
-// 	position: absolute;
-// 	object-fit:
-// }
-
-// .slopeFill {
-// 	position: absolute;
-// 	bottom: 0;
-// 	height: auto;
-// 	background-color: white;
-// 	z-index: 12;
-// 	width: 100%;
-// }
-
-// @media (min-width: 800px) {
-// 	.slope3Container {
-// 	}
-// 	.slopeFill {
-// 		display: none;
-// 	}
+// .mainContainer {
+// 	min-height: 100vh;
+// 	position: relative;
+// 	margin: auto;
+// 	background: linear-gradient(180deg, #f4b12f 0%, rgba(226, 59, 240, 0.63) 100%);
+// 	background-size: 100% 100%;
+// 	background-repeat: no-repeat;
+// 	overflow: hidden;
 // }
