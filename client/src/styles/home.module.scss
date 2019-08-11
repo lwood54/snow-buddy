@@ -1,3 +1,5 @@
+@import "./global_variables.scss";
+
 .mainLandingContainer {
 	min-height: 895px;
 	position: relative;
@@ -44,4 +46,30 @@
 	@media (min-width: (500px)) {
 		display: none;
 	}
+}
+
+.landingButtonsContainer {
+	width: 100%;
+	position: absolute;
+	top: 700px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.landingButtons {
+	min-width: 300px;
+	min-height: 60px;
+	border-radius: 30px;
+	font-size: $main-font-size-larger;
+}
+
+.registerBtn {
+	background-color: #18a0fb;
+	color: white;
+}
+
+.exploreBtn {
+	background-color: white;
+	color: #18a0fb;
 }

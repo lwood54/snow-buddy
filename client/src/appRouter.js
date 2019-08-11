@@ -1,14 +1,19 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./pages/home";
-import About from "./pages/about";
+import Resorts from "./pages/resorts";
+import EquipmentTips from "./pages/equipmentTips";
+import TravelTips from "./pages/travelTips";
 import UserProfile from "./pages/userProfile";
+import cls from "./styles/routes.module.scss";
 
 function AppRouter() {
 	return (
 		<Switch>
 			<Route path="/" exact component={Home} />
-			<Route path="/about/" component={About} />
+			<Route path="/resorts/" component={Resorts} />
+			<Route path="/equipment-tips/" component={EquipmentTips} />
+			<Route path="/travel-tips/" component={TravelTips} />
 			<Route path="/userProfile/" component={UserProfile} />
 		</Switch>
 	);

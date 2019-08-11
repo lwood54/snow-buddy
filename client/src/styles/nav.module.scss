@@ -1,0 +1,67 @@
+@import "../styles/global_variables.scss";
+
+.navContainer {
+	width: 100%;
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	background-color: transparent;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	min-height: 50px;
+}
+
+.linkStyle {
+	// color: $nav-txt-color;
+	color: white;
+	font-size: $main-font-size-larger;
+	text-decoration: none;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+	line-height: 50px;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.linkContainer {
+	position: relative;
+	padding: 5px;
+	width: 100px;
+}
+
+// CLIP PATH ANIMATION
+// .container {
+// 	.inner {
+// 		background-color: rgb(47, 81, 194);
+// 		width: 100%;
+// 		border-radius: 5px;
+// 		position: absolute;
+// 		top: 0;
+// 		left: 0;
+// 		color: white;
+// 		clip-path: circle(10% at -10% -10%);
+// 		transition: all 0.5s ease-in-out;
+// 		box-sizing: border-box;
+// 		display: flex;
+// 		justify-content: center;
+// 		align-content: center;
+// 	}
+// 	.inner2 {
+// 		position: absolute;
+// 		top: 0;
+// 		left: 0;
+// 		border-radius: 5px;
+// 		width: 100%;
+// 		box-sizing: border-box;
+// 		display: flex;
+// 		justify-content: center;
+// 		align-content: center;
+// 	}
+// 	&:hover .inner {
+// 		clip-path: circle(100px at 50% 50%);
+// 		background-color: rgb(11, 241, 107);
+// 	}
+// }

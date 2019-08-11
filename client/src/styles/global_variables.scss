@@ -1,10 +1,13 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Atma|Roboto&display=swap");
 
-$nav-txt-color: orange;
+// $nav-txt-color: rgb(252, 251, 249);
+$nav-txt-color: rgb(10, 7, 0);
 $nav-txt-hover: rgb(143, 96, 8);
-$nav-font-size: 24px;
 
-$main-font-family: "Roboto", sans-serif;
+/* STANDARD FONT ATTRIBUTES */
+$main-font-size: 1em;
+$main-font-size-larger: 1.5em;
+$main-font-family: "Atma", sans-serif;
 
 /* STANDARD COLORS */
 
