@@ -9,27 +9,29 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	min-height: 50px;
+	align-items: center;
+	min-height: 3.125em;
+	letter-spacing: 0.1em;
 }
 
 .linkStyle {
-	// color: $nav-txt-color;
-	color: white;
+	color: $white;
+	font-weight: bold;
 	font-size: $main-font-size-larger;
 	text-decoration: none;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-content: center;
-	line-height: 50px;
-	border-radius: 5px;
+	line-height: 3.125em;
+	border-radius: 0.313em;
 	box-sizing: border-box;
 }
 
 .linkContainer {
 	position: relative;
-	padding: 5px;
-	width: 100px;
+	padding: 0.313em;
+	width: 6.25em;
 }
 
 // CLIP PATH ANIMATION

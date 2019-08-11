@@ -22,9 +22,6 @@ const NavBar = () => {
 			<Link to="/travel-tips/" className={cls.linkStyle}>
 				Travel Tips
 			</Link>
-			<Link to="/userProfile/" className={cls.linkStyle}>
-				{isLoggedIn ? "User Profile" : "Login/Register"}
-			</Link>
 		</nav>
 	);
 };

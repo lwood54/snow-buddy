@@ -1,11 +1,12 @@
 @import "./global_variables.scss";
 
 .mainLandingContainer {
-	min-height: 895px;
+	min-height: 55.938em;
 	position: relative;
-	max-height: 800px;
+	max-height: 50em;
 	margin: auto;
-	background: linear-gradient(180deg, #f4b12f 0%, rgba(226, 59, 240, 0.63) 100%);
+	// background: linear-gradient(180deg, #f4b12f 0%, rgba(226, 59, 240, 0.63) 100%);
+	background: linear-gradient(180deg, rgba(239, 73, 252, 0.631627) 0%, #fec85f 35.94%);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	overflow: hidden;
@@ -14,36 +15,36 @@
 
 .bgImage {
 	position: absolute;
-	top: 200px;
+	top: 12.5em;
 	width: 110%;
 	margin: 0;
 	margin-left: -10px;
 	transition: top 0.5s;
 
-	@media (min-width: (800px)) {
-		top: 100px;
+	@media (min-width: (50em)) {
+		top: 6.25em;
 	}
 
-	@media (min-width: (1300px)) {
-		top: 50px;
+	@media (min-width: (81.25em)) {
+		top: -2em;
 	}
 
-	@media (min-width: (1700px)) {
-		top: 0px;
+	@media (min-width: (106.25em)) {
+		top: 0;
 	}
 }
 
 .slopeFiller {
 	position: absolute;
-	height: 800px;
+	height: 50em;
 	width: 100%;
-	top: 300px;
+	top: 18.75em;
 	background-color: white;
 
-	@media (min-width: 250px) {
-		top: 450px;
+	@media (min-width: 15.625em) {
+		top: 28.125em;
 	}
-	@media (min-width: (500px)) {
+	@media (min-width: (31.25em)) {
 		display: none;
 	}
 }
@@ -51,25 +52,52 @@
 .landingButtonsContainer {
 	width: 100%;
 	position: absolute;
-	top: 700px;
+	top: 35em;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
+
+	@media (min-width: 48em) {
+		top: 41em;
+	}
 }
 
 .landingButtons {
-	min-width: 300px;
-	min-height: 60px;
-	border-radius: 30px;
+	min-width: 15em;
+	min-height: 2em;
+	line-height: 2em;
+	border-radius: 1.875em;
 	font-size: $main-font-size-larger;
+	margin: 0.5em 0.5em;
+	cursor: pointer;
+	border: none;
+	outline: none;
+
+	&:active {
+		box-shadow: none;
+	}
 }
 
 .registerBtn {
-	background-color: #18a0fb;
-	color: white;
+	background-color: $sky-blue;
+	color: $white;
+	box-shadow: 0 3px 3px $sky-blue-darker;
+
+	&:hover {
+		color: $sky-blue;
+		background-color: $white;
+		border: 1px solid $sky-blue;
+	}
 }
 
 .exploreBtn {
-	background-color: white;
-	color: #18a0fb;
+	background-color: $white;
+	color: $sky-blue;
+	border: 1px solid $sky-blue;
+	box-shadow: 0 3px 3px $sky-blue;
+
+	&:hover {
+		background-color: $sky-blue;
+		color: $white;
+	}
 }
