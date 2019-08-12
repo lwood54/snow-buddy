@@ -18,7 +18,7 @@ const NavBar = () => {
 		<nav className={cls.navContainer}>
 			<span className={cls.navIconContainer} onClick={handleMenuToggle}>
 				<img src={navMenuIcon} alt="nav menu icon" />
-				{isMenuOpen ? <NavDropDown /> : null}
+				<NavDropDown isOpen={isMenuOpen} />
 			</span>
 			<div className={cls.navLinksContainer}>
 				<Link to="/" className={cls.linkStyle}>
