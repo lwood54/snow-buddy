@@ -6,18 +6,32 @@
 	z-index: 100;
 	top: 0;
 	background-color: transparent;
-	display: flex;
+}
+
+.navIconContainer {
+	cursor: pointer;
+	@media (min-width: $bp-s) {
+		display: none;
+	}
+}
+
+.navLinksContainer {
+	display: none;
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
 	min-height: 3.125em;
 	letter-spacing: 0.1em;
+
+	@media (min-width: $bp-s) {
+		display: flex;
+	}
 }
 
 .linkStyle {
 	color: $white;
 	font-weight: bold;
-	font-size: $main-font-size-larger;
+	font-size: $main-font-size-L;
 	text-decoration: none;
 	display: flex;
 	flex-direction: row;
@@ -26,12 +40,6 @@
 	line-height: 3.125em;
 	border-radius: 0.313em;
 	box-sizing: border-box;
-}
-
-.linkContainer {
-	position: relative;
-	padding: 0.313em;
-	width: 6.25em;
 }
 
 // CLIP PATH ANIMATION

@@ -15,6 +15,7 @@ const Home = () => {
 		<div className={cls.mainLandingContainer}>
 			<img className={cls.bgImage} src={bgSlopeSVGtall} alt="bg-slope" />
 			<div className={cls.slopeFiller} />
+			<h1 className={cls.landingTitle}>Snow Buddy</h1>
 			<div className={cls.landingButtonsContainer}>
 				<Link to="/userProfile/">
 					<button className={regBtnStyles}>{isLoggedIn ? "User Profile" : "Login/Register"}</button>

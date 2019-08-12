@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Atma|Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Atma|Megrim|Roboto&display=swap");
 
 // $nav-txt-color: rgb(252, 251, 249);
 $nav-txt-color: rgb(10, 7, 0);
@@ -6,14 +6,25 @@ $nav-txt-hover: rgb(143, 96, 8);
 
 /* STANDARD FONT ATTRIBUTES */
 $main-font-size: 1em;
-$main-font-size-larger: 1.5em;
+$main-font-size-L: 1.5em;
+$main-font-size-XL: 2em;
+$main-font-size-XXL: 4em;
 $main-font-family: "Atma", sans-serif;
+$mt-font-family: "Megrim", sans-serif;
 
 /* STANDARD COLORS */
 
 $white: #fff;
 $sky-blue: #18a0fb;
 $sky-blue-darker: #0e5d92;
+
+/* BREAK POINTS */
+$bp-xs: 18.75em;
+$bp-s: 40.625em;
+$bp-m: 50em;
+$bp-l: 80em;
+$bp-xl: 93.75em;
+$bp-xxl: 106.25em;
 
 * {
 	font-family: $main-font-family;

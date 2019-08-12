@@ -5,7 +5,6 @@
 	position: relative;
 	max-height: 50em;
 	margin: auto;
-	// background: linear-gradient(180deg, #f4b12f 0%, rgba(226, 59, 240, 0.63) 100%);
 	background: linear-gradient(180deg, rgba(239, 73, 252, 0.631627) 0%, #fec85f 35.94%);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
@@ -21,7 +20,7 @@
 	margin-left: -10px;
 	transition: top 0.5s;
 
-	@media (min-width: (50em)) {
+	@media (min-width: ($bp-xs)) {
 		top: 6.25em;
 	}
 
@@ -49,6 +48,22 @@
 	}
 }
 
+.landingTitle {
+	position: absolute;
+	font-size: $main-font-size-XXL;
+	font-family: $mt-font-family;
+	color: $white;
+	top: 0.75em;
+	width: 100%;
+	text-align: center;
+
+	@media (min-width: (62.5em)) {
+		width: auto;
+		top: 3.5em;
+		right: 3.5em;
+	}
+}
+
 .landingButtonsContainer {
 	width: 100%;
 	position: absolute;
@@ -67,7 +82,7 @@
 	min-height: 2em;
 	line-height: 2em;
 	border-radius: 1.875em;
-	font-size: $main-font-size-larger;
+	font-size: $main-font-size-L;
 	margin: 0.5em 0.5em;
 	cursor: pointer;
 	border: none;
