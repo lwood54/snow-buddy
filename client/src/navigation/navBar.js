@@ -17,7 +17,7 @@ const NavBar = () => {
 	return (
 		<nav className={cls.navContainer}>
 			<span className={cls.navIconContainer} onClick={handleMenuToggle}>
-				<img src={navMenuIcon} alt="nav menu icon" />
+				<img src={navMenuIcon} alt="nav menu icon" className={cls.menuIcon} />
 				<NavDropDown isOpen={isMenuOpen} />
 			</span>
 			<div className={cls.navLinksContainer}>

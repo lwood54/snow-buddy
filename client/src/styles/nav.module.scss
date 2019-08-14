@@ -11,7 +11,13 @@
 .navIconContainer {
 	cursor: pointer;
 	@media (min-width: $bp-s) {
-		display: none;
+		visibility: hidden;
+	}
+}
+
+.menuIcon {
+	@media (min-width: $bp-s) {
+		// display: none;
 	}
 }
 
