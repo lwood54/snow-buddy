@@ -9,7 +9,6 @@
 	100% {
 		left: 0;
 		opacity: 1;
-		visibility: visible;
 	}
 }
 
@@ -25,9 +24,15 @@
 }
 
 /* CLASS ATTRIBUTES */
+.navSliderContainer {
+	@media (min-width: $bp-s) {
+		display: none;
+	}
+}
+
 .navLinksContainer {
 	position: absolute;
-	display: none;
+	display: flex;
 	flex-direction: column;
 	height: 500px;
 	width: 300px;
@@ -35,12 +40,8 @@
 }
 
 .menuSlideIn {
-	display: flex;
-	animation: slideInFromLeft 0.25s ease-in;
+	animation: slideInFromLeft 0.25s ease-in forwards;
 }
-
-// TODO: Find a good way to allow slide out transitions, but prevent the temporary showing
-// of the menu due to animations when the screen resizes.
 .menuSlideOut {
 	animation: slideOutToLeft 0.25s ease-out forwards;
 }
