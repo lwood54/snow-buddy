@@ -35,6 +35,11 @@
 	background-color: $sky-blue;
 }
 
+.hide {
+	display: none;
+	// border: 2px solid red;
+}
+
 .menuSlideIn {
 	animation: slideInFromLeft 0.25s ease-in forwards;
 }
