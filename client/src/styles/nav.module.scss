@@ -10,14 +10,10 @@
 
 .navIconContainer {
 	cursor: pointer;
+	position: absolute;
+	padding: 15px;
 	@media (min-width: $bp-s) {
 		visibility: hidden;
-	}
-}
-
-.menuIcon {
-	@media (min-width: $bp-s) {
-		// display: none;
 	}
 }
 

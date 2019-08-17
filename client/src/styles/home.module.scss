@@ -1,15 +1,7 @@
 @import "./global_variables.scss";
 
-.mainLandingContainer {
-	min-height: 55.938em;
-	position: relative;
-	max-height: 50em;
-	margin: auto;
+.bg {
 	background: linear-gradient(180deg, rgba(239, 73, 252, 0.631627) 0%, #fec85f 35.94%);
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	overflow: hidden;
-	transition: background 0.5s;
 }
 
 .bgImage {

@@ -1,13 +1,13 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavDropDown from "../components/NavDropDown";
 import cls from "../styles/nav.module.scss";
-import { LoggedInStatus } from "../App";
+// import { LoggedInStatus } from "../App";
 
 import navMenuIcon from "../images/svgs/icons/nav-menu-icon.svg";
 
 const NavBar = () => {
-	const [isLoggedIn] = useContext(LoggedInStatus);
+	// const [isLoggedIn] = useContext(LoggedInStatus);
 	const [isMenuOpen, setIsMenuOpen] = useState("");
 	const [menuWasOpen, setMenuWasOpen] = useState(false);
 

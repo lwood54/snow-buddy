@@ -1,3 +1,8 @@
-.background {
-	background: linear-gradient(180deg, rgba(3, 134, 255, 0.66) 0%, rgba(1, 51, 180, 0.66) 0.01%, #5fb2fe 78.12%);
+.bg {
+	padding-top: 30px;
+	background: linear-gradient(180deg, rgba(3, 134, 255, 0.66) 0%, rgba(1, 51, 180, 0.66) 0.01%, #5fb2fe 26.04%, #6fe6ee 52.08%);
+}
+
+.componentContainer {
+	width: 100%;
 }
