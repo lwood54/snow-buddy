@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavDropDown from "../components/NavDropDown";
-import cls from "../styles/nav.module.scss";
+import cls from "../styles/navigation/nav.module.scss";
 // import { LoggedInStatus } from "../App";
 
 import navMenuIcon from "../images/svgs/icons/nav-menu-icon.svg";

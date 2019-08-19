@@ -4,7 +4,7 @@ import App from "./App";
 import "normalize.css";
 import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
-import "./styles/global_variables.scss";
+import "./styles/global/global_variables.scss";
 
 ReactDOM.render(
 	<BrowserRouter>

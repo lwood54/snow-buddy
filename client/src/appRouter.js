@@ -5,7 +5,6 @@ import Resorts from "./pages/resorts";
 import EquipmentTips from "./pages/equipmentTips";
 import TravelTips from "./pages/travelTips";
 import UserProfile from "./pages/userProfile";
-import cls from "./styles/routes.module.scss";
 
 function AppRouter() {
 	return (

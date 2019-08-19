@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 import { LoggedInStatus } from "../App";
 
-import cls from "../styles/home.module.scss";
-import globalStyles from "../styles/global.module.scss";
+import cls from "../styles/pages/home.module.scss";
+import globalStyles from "../styles/global/global.module.scss";
 import bgSlopeSVGtall from "../images/svgs/slope-tall.svg";
 
 let regBtnStyles = [cls.landingButtons, cls.registerBtn].join(" ");

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import cls from "../styles/navDropDown.module.scss";
+import cls from "../styles/navigation/navDropDown.module.scss";
 
 import { LoggedInStatus } from "../App";
 

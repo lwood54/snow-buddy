@@ -5,8 +5,8 @@ import UserLogin from "../components/UserLogin";
 import UserLogout from "../components/UserLogout";
 import UserRegistration from "../components/UserRegistration";
 
-import cls from "../styles/userProfile.module.scss";
-import globalStyles from "../styles/global.module.scss";
+import cls from "../styles/pages/userProfile.module.scss";
+import globalStyles from "../styles/global/global.module.scss";
 
 let bgStyles = [globalStyles.mainLandingContainer, cls.bg].join(" ");
 
