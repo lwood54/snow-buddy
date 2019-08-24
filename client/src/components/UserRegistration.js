@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { CurrentUserContext, LoggedInStatus } from "../App";
 
 const UserRegistration = () => {
+	// Context
+	const [, setCurrentUser] = useContext(CurrentUserContext);
+	const [, setIsLoggedIn] = useContext(LoggedInStatus);
+
+	// Local State
 	const [userName, setUserName] = useState("");
 	const [userSkill, setUserSkill] = useState("");
 	const [userEmail, setUserEmail] = useState("");
@@ -42,14 +48,21 @@ const UserRegistration = () => {
 		};
 
 		fetch(registerUrl, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify(userData)
-		})
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(userData)
+			})
 			.then(response => response.json())
 			.then(res => {
+				if (res.token) {
+					setIsLoggedIn(true);
+					setCurrentUser({
+						...res.user,
+						token: res.token
+					})
+				}
 				setRegistrationMessage("You have successfully registered...");
 				setShowRegistrationMessage(true);
 			})

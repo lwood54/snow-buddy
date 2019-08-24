@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const router = require("express").Router();
 const User = require("../model/User");
 const { registrationValidation, loginValidation } = require("../validation");
+const { loginUser } = require('../services/authenticationService');
 
 // route: /api/user/register
 router.post("/register", async (req, res) => {
@@ -27,40 +28,19 @@ router.post("/register", async (req, res) => {
 	});
 	try {
 		const savedUser = await user.save();
-		// const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-		// res.header("auth-token", token).send({ token, user });
-		res.send(savedUser);
+		await loginUser({
+			email: user.email,
+			password: req.body.password
+		}, res);
 	} catch (error) {
-		res.status(400).send(err);
+		console.log(error)
+		res.status(400).send(error);
 	}
 });
 
 // route: /api/user/login
-router.post("/login", async (req, res) => {
-	// Validate data before creating user
-	const { error } = loginValidation(req.body);
-	if (error) return res.status(400).send({ error: `${error.details[0].message}` });
-
-	// Check if user is already in DB
-	const user = await User.findOne({ email: req.body.email });
-	if (!user) return res.status(400).send({ error: "User not found...email or password may be wrong." });
-
-	// Check for correct PASSWORD
-	const validPassword = await bcrypt.compare(req.body.password, user.password);
-	if (!validPassword) return res.status(400).send({ error: "Password is invalid..." });
-
-	// Create and assign JSON Web Token
-	const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-	res.header("auth-token", token).send({
-		token,
-		"access-control-expose-headers": "Authorization",
-		user: {
-			name: user.name,
-			email: user.email,
-			date: user.date,
-			skill: user.skill
-		}
-	});
+router.post("/login", (req, res) => {
+	loginUser(req.body, res);
 });
 
 /// route: /api/user/update
