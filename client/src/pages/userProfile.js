@@ -10,21 +10,26 @@ import globalStyles from "../styles/global/global.module.scss";
 
 let bgStyles = [globalStyles.mainLandingContainer, cls.bg].join(" ");
 
-const svgStyles = {
-	position: "absolute",
-	zIndex: "100"
-};
-
 const UserProfile = () => {
 	const [isLoggedIn] = useContext(LoggedInStatus);
 	return (
 		<div className={bgStyles}>
 			<div className={cls.componentContainer}>
-				<UserRegistration />
-			</div>
-			<div className={cls.componentContainer}>{isLoggedIn ? <UserLogout /> : <UserLogin />}</div>
-			<div className={cls.componentContainer}>
-				<UserInfo />
+				{!isLoggedIn ? (
+					<div className={cls.component}>
+						<UserRegistration />
+					</div>
+				) : null}
+				{isLoggedIn ? (
+					<div className={cls.component}>
+						<UserInfo />
+						<UserLogout />
+					</div>
+				) : (
+					<div className={cls.component}>
+						<UserLogin />
+					</div>
+				)}
 			</div>
 		</div>
 	);

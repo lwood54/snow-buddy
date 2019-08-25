@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { LoggedInStatus, CurrentUserContext } from "../App";
 
+import cls from "../styles/components/userLogin.module.scss";
+
 const UserLogin = () => {
 	const [userEmail, setUserEmail] = useState("");
 	const [userPassword, setUserPassword] = useState("");

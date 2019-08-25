@@ -1,5 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { CurrentUserContext, LoggedInStatus } from "../App";
+
+import cls from "../styles/components/userRegistration.module.scss";
 
 const UserRegistration = () => {
 	// Context
@@ -13,16 +15,25 @@ const UserRegistration = () => {
 	const [userPassword, setUserPassword] = useState("");
 	const [registrationMessage, setRegistrationMessage] = useState("");
 	const [showRegistrationMessage, setShowRegistrationMessage] = useState(false);
+	const [skillValidationError, setSkillValidationError] = useState(false);
 
 	const registerUrl = "http://localhost:5000/api/user/register";
 
 	const handleChange = e => {
+		setRegistrationMessage("");
+		setShowRegistrationMessage(false);
 		switch (e.target.name) {
 			case "name":
 				setUserName(e.target.value);
 				break;
 			case "skill":
 				setUserSkill(e.target.value);
+				if (e.target.value <= 0 || e.target.value > 10) {
+					setUserSkill("");
+					setSkillValidationError(true);
+				} else {
+					setSkillValidationError(false);
+				}
 				break;
 			case "email":
 				setUserEmail(e.target.value);
@@ -48,12 +59,12 @@ const UserRegistration = () => {
 		};
 
 		fetch(registerUrl, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify(userData)
-			})
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(userData)
+		})
 			.then(response => response.json())
 			.then(res => {
 				if (res.token) {
@@ -61,42 +72,64 @@ const UserRegistration = () => {
 					setCurrentUser({
 						...res.user,
 						token: res.token
-					})
+					});
+				} else {
+					setRegistrationMessage(res.error);
+					setShowRegistrationMessage(true);
 				}
-				setRegistrationMessage("You have successfully registered...");
-				setShowRegistrationMessage(true);
 			})
 			.catch(error => {
 				console.log("Error: ", error);
 				setRegistrationMessage("Unable to register right now.");
 				setShowRegistrationMessage(true);
 			});
-
-		setUserName("");
-		setUserSkill("");
-		setUserEmail("");
-		setUserPassword("");
-		setTimeout(() => {
-			setRegistrationMessage("");
-			setShowRegistrationMessage(false);
-		}, 3000);
 	};
 
 	return (
-		<div>
-			<h1>User Registration</h1>
-			<form onSubmit={handleRegister}>
-				<label>Name</label>
-				<input type="text" onChange={handleChange} name="name" placeholder="Logan Wood" value={userName} />
-				<label>Skill Level</label>
-				<input type="number" onChange={handleChange} name="skill" placeholder="1 to 10" value={userSkill} />
-				<label>Email</label>
-				<input type="email" onChange={handleChange} name="email" placeholder="energy@mcsquared.com" value={userEmail} />
-				<label>Password</label>
-				<input type="password" onChange={handleChange} name="password" placeholder="kewlpassword" value={userPassword} />
-				<input type="submit" value="Register" />
+		<div className={cls.registration__block}>
+			{/*<h1 className={cls.registration__form_title}>Registration</h1>*/}
+			<form className={cls.registration__form_container} onSubmit={handleRegister}>
+				<label className={cls.registration__form_label}>Name</label>
+				<input
+					className={cls.registration__form_input}
+					type="text"
+					onChange={handleChange}
+					name="name"
+					placeholder="Logan Wood"
+					value={userName}
+				/>
+				<label className={cls.registration__form_label}>Skill Level</label>
+				<input
+					className={cls.registration__form_input}
+					type="number"
+					onChange={handleChange}
+					name="skill"
+					placeholder="1 to 10"
+					value={userSkill}
+				/>
+				<label className={cls.registration__form_label}>Email</label>
+				<input
+					className={cls.registration__form_input}
+					type="email"
+					onChange={handleChange}
+					name="email"
+					placeholder="energy@mcsquared.com"
+					value={userEmail}
+				/>
+				<label className={cls.registration__form_label}>Password</label>
+				<input
+					className={cls.registration__form_input}
+					type="password"
+					onChange={handleChange}
+					name="password"
+					placeholder="kewlpassword"
+					value={userPassword}
+				/>
+				<input className={cls.registration__form_button} type="submit" value="Register" />
 			</form>
-			{showRegistrationMessage ? <h3>{registrationMessage}</h3> : null}
+			<h3 className={cls.registration__message}>
+				{showRegistrationMessage ? registrationMessage : skillValidationError ? "Skill Level should be between 1 and 10" : ""}
+			</h3>
 		</div>
 	);
 };

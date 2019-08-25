@@ -3,17 +3,23 @@ const jwt = require("jsonwebtoken");
 const router = require("express").Router();
 const User = require("../model/User");
 const { registrationValidation, loginValidation } = require("../validation");
-const { loginUser } = require('../services/authenticationService');
+const { loginUser } = require("../services/authenticationService");
 
 // route: /api/user/register
 router.post("/register", async (req, res) => {
 	// Validate data before creating user
 	const { error } = registrationValidation(req.body);
-	if (error) return res.status(400).send(`Error Details: ${error.details[0].message}`);
+	if (error)
+		return res.status(400).send({
+			error: `Error Details: ${error.details[0].message}`
+		});
 
 	// Check if user is already in DB
 	const emailExists = await User.findOne({ email: req.body.email });
-	if (emailExists) return res.status(400).send("User (email) already exists...");
+	if (emailExists)
+		return res.status(400).send({
+			error: "User (email) already exists..."
+		});
 
 	// Hash the password
 	const salt = await bcrypt.genSalt(10);
@@ -28,12 +34,15 @@ router.post("/register", async (req, res) => {
 	});
 	try {
 		const savedUser = await user.save();
-		await loginUser({
-			email: user.email,
-			password: req.body.password
-		}, res);
+		await loginUser(
+			{
+				email: user.email,
+				password: req.body.password
+			},
+			res
+		);
 	} catch (error) {
-		console.log(error)
+		console.log(error);
 		res.status(400).send(error);
 	}
 });

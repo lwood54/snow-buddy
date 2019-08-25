@@ -2,10 +2,6 @@ import React from "react";
 
 import cls from "../styles/pages/resorts.module.scss";
 
-const aboutStyle = {
-	margin: 0
-};
-
 const about = () => {
 	return (
 		<div>
