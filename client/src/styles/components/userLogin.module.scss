@@ -1,40 +1,82 @@
-.login__block {
+@import "../global/global_variables.scss";
+
+$block: ".login";
+
+#{$block}__block {
 	width: 100%;
 	min-height: 75vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	border: 2px solid black;
 }
 
-.login__form_container {
+#{$block}__form_container {
 	width: 100%;
+	padding: 0.94em; // 15px
 	display: flex;
+	background: rgb(249, 252, 78);
 	flex-direction: column;
-	border: 2px solid pink;
+	box-sizing: border-box;
+	border-radius: 0.19em; // 3px
+	box-shadow: 1px 1px 7px -1px rgb(21, 109, 136);
 }
 
-.login__form_title {
+#{$block}__form_title {
 	width: 100%;
-	height: 45px;
+	height: 2.81em; // 45px
 	margin: 5px 0;
 	text-align: center;
 }
 
-.login__form_label {
-	width: 95%;
-	height: 25px;
-	line-height: 25px;
-	padding: 5px 0 0;
-	margin: 5px 5px 0 5px;
+#{$block}__form_label {
+	width: 80%;
+	height: 1.56em; // 25px
+	line-height: 1.56em; // 25px
+	padding: 0.31em 0 0; // 5px
+	margin: 0.31em auto 0 auto; // 5px
 	box-sizing: border-box;
+	font-weight: bold;
 }
 
-.login__form_input {
-	width: 95%;
-	height: 35px;
-	line-height: 35px;
+#{$block}__form_input {
+	width: 80%;
+	height: 2.19em; // 35px
+	line-height: 2.19em; // 35
 	padding: 5px 2px;
-	margin: 5px auto;
+	margin: 0.31em auto; // 5px
 	box-sizing: border-box;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+#{$block}__form_button {
+	width: 100px;
+	height: 2.19em; // 35px
+	line-height: 2.19em; // 35px
+	border-radius: 3px;
+	margin: 1.25em auto; // 20px
+	background-color: $sky-blue;
+	font-size: $main-font-size-L;
+	border: none;
+	box-shadow: 1px 1px 4px $sky-blue-darker;
+	cursor: pointer;
+	color: $white;
+
+	&:active {
+		border: none;
+		outline: none;
+		box-shadow: none;
+	}
+	&:focus {
+		border: none;
+		outline: none;
+	}
+}
+
+#{$block}__message {
+	height: 2.19em; // 35px
+	width: 100%;
+	text-align: center;
 }

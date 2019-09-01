@@ -60,15 +60,31 @@ const UserLogin = () => {
 	};
 
 	return (
-		<div>
-			<h1>Login</h1>
-			<form>
-				<label>Email</label>
-				<input type="email" onChange={handleChange} name="email" placeholder="energy@mcsquared.com" value={userEmail} />
-				<label>Password</label>
-				<input type="password" onChange={handleChange} name="password" placeholder="kewlpassword" value={userPassword} />
+		<div className={cls.login__block}>
+			{/*<h1>Login</h1>*/}
+			<form className={cls.login__form_container}>
+				<label className={cls.login__form_label}>Email</label>
+				<input
+					className={cls.login__form_input}
+					type="email"
+					onChange={handleChange}
+					name="email"
+					placeholder="energy@mcsquared.com"
+					value={userEmail}
+				/>
+				<label className={cls.login__form_label}>Password</label>
+				<input
+					className={cls.login__form_input}
+					type="password"
+					onChange={handleChange}
+					name="password"
+					placeholder="kewlpassword"
+					value={userPassword}
+				/>
 				{errorMessage ? <p>{errorMessage}</p> : null}
-				<button onClick={handleLogin}>Log In</button>
+				<button className={cls.login__form_button} onClick={handleLogin}>
+					Log In
+				</button>
 			</form>
 		</div>
 	);

@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import NavDropDown from "../components/NavDropDown";
 import cls from "../styles/navigation/nav.module.scss";
-// import { LoggedInStatus } from "../App";
+import { LoggedInStatus } from "../App";
+import { withRouter } from "react-router-dom";
 
 import navMenuIcon from "../images/svgs/icons/nav-menu-icon.svg";
 
-const NavBar = () => {
-	// const [isLoggedIn] = useContext(LoggedInStatus);
+const NavBar = props => {
+	const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInStatus);
 	const [isMenuOpen, setIsMenuOpen] = useState("");
 	const [menuWasOpen, setMenuWasOpen] = useState(false);
 
@@ -23,6 +24,17 @@ const NavBar = () => {
 
 	const handleMenuToggle = () => {
 		setIsMenuOpen(!isMenuOpen);
+	};
+
+	const handleLogout = () => {
+		// if (isLoggedIn) setIsLoggedIn(false);
+		if (isLoggedIn) {
+			setIsLoggedIn(false);
+			props.history.push("/");
+		} else {
+			console.log("props: ", props);
+			props.history.push("/userProfile");
+		}
 	};
 
 	return (
@@ -45,8 +57,9 @@ const NavBar = () => {
 					Travel Tips
 				</Link>
 			</div>
+			<span onClick={handleLogout}>{isLoggedIn ? "logout" : "login"}</span>
 		</nav>
 	);
 };
 
-export default NavBar;
+export default withRouter(NavBar);

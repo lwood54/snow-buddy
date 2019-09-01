@@ -1,10 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import { LoggedInStatus, CurrentUserContext } from "../App";
 
+import cls from "../styles/components/userInfo.module.scss";
+
 const UserInfo = () => {
 	const [isLoggedIn] = useContext(LoggedInStatus);
 	const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
-	const [newSkillLevel, setNewSkillLevel] = useState("");
+	const [newSkillLevel, setNewSkillLevel] = useState("2");
 	const [userMessage, setUserMessage] = useState("");
 	const [userIsUpdated, setIsUserUpdated] = useState("");
 
@@ -23,10 +25,8 @@ const UserInfo = () => {
 	}, [isLoggedIn, setCurrentUser]);
 
 	const handleNewSkillInput = e => {
-		e.preventDefault();
-		if (e.target.value >= 0 && e.target.value <= 10) {
-			setNewSkillLevel(e.target.value);
-		}
+		setNewSkillLevel(e.target.value);
+		console.log("newSkillLevel: ", newSkillLevel);
 	};
 
 	const submitUpdate = e => {
@@ -65,25 +65,35 @@ const UserInfo = () => {
 				});
 		}
 	};
+
+	// Create array of options for skill select render
+	const skillValues = Array.from(Array(10).keys()).map(num => {
+		return (
+			<option key={num} value={num + 1}>
+				{num + 1}
+			</option>
+		);
+	});
 	return (
-		<div>
+		<div className={cls.userInfo__block}>
 			{isLoggedIn ? (
-				<div>
-					<h1>name: {currentUser.name}</h1>
-					<h1>email: {currentUser.email}</h1>
-					<h1>skill: {currentUser.skill}</h1>
-					<ul>
-						<li>
-							Update skill level:
-							<input name="skill" type="number" onChange={handleNewSkillInput} value={newSkillLevel} />
-						</li>
-						<li>
-							<button onClick={submitUpdate}>update</button>
-						</li>
-					</ul>
+				<div className={cls.userInfo__form_container}>
+					<p className={cls.userInfo__detail}>name: {currentUser.name}</p>
+					<p className={cls.userInfo__detail}>email: {currentUser.email}</p>
+					<div className={cls.userInfo__skill_container}>
+						<p className={[cls.userInfo__detail, cls.userInfo__detail___can_modify].join(" ")}>skill: {currentUser.skill}</p>
+						<label className={cls.userInfo__detail_skill} htmlFor="skill">
+							<select value={newSkillLevel} onChange={handleNewSkillInput}>
+								{skillValues}
+							</select>
+						</label>
+					</div>
+					<button className={cls.userInfo__form_button} onClick={submitUpdate}>
+						update
+					</button>
 				</div>
 			) : null}
-			{userMessage ? <p>{userMessage}</p> : null}
+			<p className={cls.userInfo__message_text}>{userMessage ? userMessage : null}</p>
 		</div>
 	);
 };
