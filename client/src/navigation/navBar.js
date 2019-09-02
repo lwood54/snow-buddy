@@ -28,13 +28,7 @@ const NavBar = props => {
 
 	const handleLogout = () => {
 		// if (isLoggedIn) setIsLoggedIn(false);
-		if (isLoggedIn) {
-			setIsLoggedIn(false);
-			props.history.push("/");
-		} else {
-			console.log("props: ", props);
-			props.history.push("/userProfile");
-		}
+		if (isLoggedIn) setIsLoggedIn(false);
 	};
 
 	return (
@@ -47,17 +41,22 @@ const NavBar = props => {
 				<Link to="/" className={cls.linkStyle}>
 					<div className={cls.inner}>Home</div>
 				</Link>
-				<Link to="/resorts/" className={cls.linkStyle}>
-					Resorts
+				<Link to="/slopes/" className={cls.linkStyle}>
+					Slopes
 				</Link>
-				<Link to="/equipment-tips/" className={cls.linkStyle}>
-					Equipment Tips
+				<Link to="/general-tips/" className={cls.linkStyle}>
+					Tips
 				</Link>
-				<Link to="/travel-tips/" className={cls.linkStyle}>
-					Travel Tips
-				</Link>
+				{!isLoggedIn ? (
+					<Link to="/userProfile" className={cls.linkStyle}>
+						Login
+					</Link>
+				) : (
+					<Link to="/" onClick={handleLogout} className={cls.linkStyle}>
+						Logout
+					</Link>
+				)}
 			</div>
-			<span onClick={handleLogout}>{isLoggedIn ? "logout" : "login"}</span>
 		</nav>
 	);
 };
