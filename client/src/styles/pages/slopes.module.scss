@@ -1,0 +1,23 @@
+@import "../global/global_variables.scss";
+
+$block: ".Slopes";
+
+#{$block}__bg {
+	background: $bg-slopes;
+}
+
+#{$block}__component_container {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+#{$block}__component {
+	width: 28.13em; // 450px
+	padding: 1.89em; // 30px
+	margin: auto;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+}

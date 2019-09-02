@@ -1,18 +1,21 @@
-.bg {
-	padding-top: 50px;
-	background: linear-gradient(180deg, rgba(3, 134, 255, 0.66) 0%, rgba(1, 51, 180, 0.66) 0.01%, #5fb2fe 26.04%, #6fe6ee 52.08%);
+@import "../global/global_variables.scss";
+
+$block: ".UserProfile";
+
+#{$block}__bg {
+	background: $bg-user;
 }
 
-.componentContainer {
+#{$block}__component_container {
 	width: 100%;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 }
 
-.component {
-	width: 450px;
-	padding: 30px;
+#{$block}__component {
+	width: 28.13em; // 450px
+	padding: 1.89em; // 30px
 	margin: auto;
 	box-sizing: border-box;
 	display: flex;

@@ -1,0 +1,7 @@
+@import "../global/global_variables.scss";
+
+$block: ".GeneralTips";
+
+#{$block}__bg {
+	background: $bg-tips;
+}
