@@ -7,7 +7,7 @@ const registrationValidation = data => {
 		name: Joi.string()
 			.min(3)
 			.required(),
-		skill: Joi.number().required(),
+		skill: Joi.string().required(),
 		email: Joi.string()
 			.min(6)
 			.required()

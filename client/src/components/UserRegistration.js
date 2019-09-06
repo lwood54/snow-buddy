@@ -10,7 +10,7 @@ const UserRegistration = () => {
 
 	// Local State
 	const [userName, setUserName] = useState("");
-	const [userSkill, setUserSkill] = useState("");
+	const [userSkill, setUserSkill] = useState("beginner");
 	const [userEmail, setUserEmail] = useState("");
 	const [userPassword, setUserPassword] = useState("");
 	const [registrationMessage, setRegistrationMessage] = useState("");
@@ -28,12 +28,6 @@ const UserRegistration = () => {
 				break;
 			case "skill":
 				setUserSkill(e.target.value);
-				if (e.target.value <= 0 || e.target.value > 10) {
-					setUserSkill("");
-					setSkillValidationError(true);
-				} else {
-					setSkillValidationError(false);
-				}
 				break;
 			case "email":
 				setUserEmail(e.target.value);
@@ -99,14 +93,11 @@ const UserRegistration = () => {
 					value={userName}
 				/>
 				<label className={cls.registration__form_label}>Skill Level</label>
-				<input
-					className={cls.registration__form_input}
-					type="number"
-					onChange={handleChange}
-					name="skill"
-					placeholder="1 to 10"
-					value={userSkill}
-				/>
+				<select className={cls.registration__form_input} name="skill" onChange={handleChange} value={userSkill}>
+					<option value="beginner">Beginner</option>
+					<option value="intermediate">Intermediate</option>
+					<option value="advanced">Advanced</option>
+				</select>
 				<label className={cls.registration__form_label}>Email</label>
 				<input
 					className={cls.registration__form_input}

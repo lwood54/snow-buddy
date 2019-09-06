@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
 		min: 6
 	},
 	skill: {
-		type: Number,
+		type: String,
 		required: true
 	},
 	date: {

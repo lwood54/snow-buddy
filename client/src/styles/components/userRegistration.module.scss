@@ -51,6 +51,15 @@ $block: ".registration";
 	}
 }
 
+#{$block}__form_input__options {
+	background-color: red;
+	border: 2px solid green;
+}
+
+select option {
+	background-color: yellow;
+}
+
 #{$block}__form_button {
 	width: 100px;
 	height: 2.19em; // 35px
