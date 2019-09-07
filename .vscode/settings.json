@@ -1,3 +1,4 @@
 {
-	"workbench.colorTheme": "Noctis Lux"
+	"workbench.colorTheme": "Noctis Lux",
+	"editor.fontFamily": "input mono"
 }
