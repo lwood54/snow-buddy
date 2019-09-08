@@ -6,8 +6,10 @@
 	"scripts": {
 		"start": "nodemon server.js",
 		"client": "npm start --prefix client",
+		"client-svelte": "npm run dev --prefix client-svelte",
 		"dev": "concurrently \"npm run start\" \"npm run client\"",
-		"killServer": "npx kill-port 5000"
+		"sv": "concurrently \"npm run start\" \"npm run client-svelte\"",
+		"killServer8000": "npx kill-port 8000"
 	},
 	"repository": {
 		"type": "git",
