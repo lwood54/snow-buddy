@@ -31,7 +31,7 @@ const UserInfo = () => {
 
 	const submitUpdate = e => {
 		e.preventDefault();
-		const updateUrl = "http://localhost:5000/api/user/update";
+		const updateUrl = "http://localhost:8000/api/user/update";
 		const updatedUser = {
 			...currentUser,
 			skill: newSkillLevel

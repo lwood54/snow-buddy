@@ -17,7 +17,7 @@ const UserRegistration = () => {
 	const [showRegistrationMessage, setShowRegistrationMessage] = useState(false);
 	const [skillValidationError, setSkillValidationError] = useState(false);
 
-	const registerUrl = "http://localhost:5000/api/user/register";
+	const registerUrl = "http://localhost:8000/api/user/register";
 
 	const handleChange = e => {
 		setRegistrationMessage("");

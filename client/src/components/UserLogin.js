@@ -24,7 +24,7 @@ const UserLogin = () => {
 	};
 
 	const handleLogin = e => {
-		const loginUrl = "http://localhost:5000/api/user/login";
+		const loginUrl = "http://localhost:8000/api/user/login";
 
 		e.preventDefault();
 		const userData = {
